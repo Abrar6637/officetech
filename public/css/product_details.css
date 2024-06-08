@@ -1,0 +1,909 @@
+.arrow::after {
+    content: url("../images/arrow.svg");
+    padding-left: 10px;
+}
+
+.arrow-white::after {
+    content: url("../images/arrow-white.png");
+    padding-left: 10px;
+}
+
+.arrow-black::after {
+    content: url("../images/arrow-black.png");
+    padding-left: 10px;
+}
+
+.tick::before {
+    content: url("../images/tick.svg");
+    padding-right: 2px;
+}
+
+.white-width {
+    width: 220px;
+    height: 267px;
+}
+
+@media (max-width: 480px) {
+    .cr-head {
+        margin: 0px !important;
+        padding: 25px 0px 25px 0px;
+    }
+
+    .pro-cat {
+        width: 99.7%;
+    }
+
+    .white-width {
+        width: 360px !important;
+    }
+
+    .ava {
+        margin-bottom: 0px !important;
+    }
+
+    .ava-border {
+        border-right: none !important;
+        border-bottom: 2px solid rgb(128, 128, 128, 0.5);
+        padding-bottom: 30px;
+    }
+}
+
+@media (min-width: 1023px) {
+    .ava {
+        margin-bottom: 166px !important;
+    }
+
+    .pro-cat {
+        width: 49.7%;
+        padding-left: 0px;
+    }
+
+    .ava-border {
+        border-right: 2px solid rgb(128, 128, 128, 0.5);
+    }
+}
+
+@media (min-width: 481px) {
+    .crousal-head {
+        margin: 85px !important;
+    }
+}
+
+/* Style the range slider */
+.range_container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 20px auto;
+}
+
+.sliders_control {
+    position: relative;
+    min-height: 50px;
+}
+
+.form_control {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    color: #635a5a;
+}
+
+/* Other existing styles for the draggable points */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #c6c6c6;
+    cursor: pointer;
+    background-image: url("../images/picker.svg") !important;
+}
+
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #c6c6c6;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #f7f7f7;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+    -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+}
+
+input[type="number"] {
+    color: #7e7e7e;
+    font-family: "Figtree";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    width: 50px;
+    height: 30px;
+    border: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    background-color: #c6c6c6;
+    pointer-events: none;
+}
+
+#fromSlider {
+    height: 0;
+    z-index: 1;
+}
+
+.checkbox {
+    width: 17px;
+    height: 17px;
+    border: 1px solid #dadada;
+    background: #fff;
+    margin-top: 14px;
+}
+
+.checkbox-label {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.filter-sidebar-heading {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 103%;
+    letter-spacing: 0.183px;
+}
+
+.filter-sidebar-div {
+    margin-top: 50px;
+}
+
+.filter-sidebar-option {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.active {
+    color: #00a9e1;
+}
+
+.filter-sidebar-range-input {
+    border-radius: 5px;
+    border: 1px solid #dadada;
+    margin: 0;
+    text-align: center;
+    padding: 9px;
+}
+
+.filter-sidebar-range-input-center-text {
+    color: #7e7e7e;
+    font-family: "Figtree";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-sidebar-checkbox-label {
+    color: #bfbfbf;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.filter-sidebar-btn {
+    width: 100%;
+    border-radius: 17px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 9px 30px;
+    letter-spacing: 0.183px;
+    background: #00a9e1;
+    color: #fff;
+    font-family: "Figtree";
+    border: none;
+    font-style: normal;
+}
+
+.filter-sidebar-btn:hover {
+    background-color: #323232;
+    width: 100%;
+    border-radius: 17px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 9px 30px;
+    letter-spacing: 0.183px;
+    color: #fff;
+    font-family: "Figtree";
+    border: none;
+    font-style: normal;
+    transition: 0.3s ease-in-out;
+}
+
+.filter-sidebar-reset {
+    color: #999;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    text-decoration-line: underline;
+    margin-top: 10px;
+}
+
+/* Breadcrumb container */
+.breadcrumb-container {
+    background-color: #fff;
+    padding: 20px;
+}
+
+/* Breadcrumb list */
+.breadcrumb {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Breadcrumb items */
+.breadcrumb li {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #cdcdcd;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+/* Breadcrumb links */
+.breadcrumb li a {
+    text-decoration: none;
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.slash {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Style the current page item (without a link) */
+.breadcrumb li:last-child {
+    color: #777;
+}
+
+/* Media query for responsive design */
+@media screen and (max-width: 768px) {
+    .breadcrumb li {
+        font-size: 12px;
+    }
+}
+
+.sort-by {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    margin-top: 7px;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: grey;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #dadada;
+    color: #7e7e7e;
+    font-family: "Figtree";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: transparent;
+}
+
+.angle-down {
+    font-size: 15px;
+}
+
+.main {
+    background-color: #f3f6f8;
+}
+
+.sale-badge {
+    background-color: #e60188 !important;
+    padding: 7px 13px;
+    border-radius: 4px;
+    left: 18px;
+    color: #fff;
+    top: 16px;
+}
+
+body {
+    min-height: 100vh !important;
+    /* 100% of viewport height */
+}
+
+body {
+    overflow-x: hidden !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.carousel-control-prev-icon {
+    background-image: url("../images/left-slider-arrow.png") !important;
+}
+
+.carousel-control-prev {
+    left: 30px;
+}
+
+.carousel-control-next-icon {
+    background-image: url("../images/right-side-arrow.png") !important;
+}
+
+.carousel-control-next {
+    right: 30px;
+}
+
+.product-detail-heading {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 103%;
+    /* 28.84px */
+    letter-spacing: 0.183px;
+}
+
+.product-detail-p {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.price {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 103%;
+    /* 30.9px */
+    letter-spacing: 0.183px;
+}
+
+.card {
+    border-radius: 0px;
+    border: 0px;
+}
+
+.quantity-input-group {
+    width: 100px;
+}
+
+.quantity-btn {
+    border: 1px solid #dadada;
+    background: #f4f4f4;
+    border-radius: 0px;
+}
+
+.quantity-input {
+    background: transparent !important;
+}
+
+.card-footer {
+    background-color: transparent;
+    border-top: 0px !important;
+}
+
+.cart-btn {
+    width: 220px;
+}
+
+.cart-btn:hover {
+    width: 220px;
+}
+
+.quantity-cart-footer-div {
+    margin-top: 94px;
+}
+
+.sig .nav-link.active {
+    border-bottom: 2px solid #da5858;
+    border-right: 1px solid #e9e9e9;
+    border-radius: 0px;
+    background-color: white;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+.sig .nav-link {
+    background-color: white;
+    color: black;
+    border-top: 0px;
+    border-left: 0px;
+}
+
+/* Default styles for all screen sizes */
+.custom-content {
+    width: 100%;
+    /* Default width for all screens */
+}
+
+.review-tab-heading {
+    color: #000;
+    font-family: "Figtree";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 103%;
+    letter-spacing: 0.183px;
+}
+
+.review-tab-p {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.compatible-products {
+    margin-top: 67px;
+}
+
+.review-about-product {
+    margin-top: 67px;
+}
+
+.active-color {
+    color: #323232;
+}
+
+.customer-review-p {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    margin-top: 10px;
+}
+
+.customer-review-name {
+    color: #424246;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.183px;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+
+.advantages-text {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.review-textarea {
+    background: #f3f6f8;
+    border: 0px;
+    font-family: "Figtree";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    border-radius: 5px;
+}
+
+.review-textarea::placeholder {
+    font-family: "Figtree";
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    text-indent: 10px;
+    padding-top: 3px;
+}
+
+.review-textarea:focus {
+    border: none;
+    /* Change to your desired border color and width */
+    outline: none;
+}
+
+.review-text-p {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.mymark-text {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.input-field-name {
+    background: #f3f6f8;
+    border: none;
+}
+
+.input-field-label {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.input-field-name:focus {
+    outline: none !important;
+    /* Remove the default focus outline */
+    box-shadow: 0 0 0 2px transparent !important;
+    /* Apply your custom border using box-shadow */
+    background: #f3f6f8;
+}
+
+.input-field-name::placeholder {
+    color: #b3b3b3;
+    font-family: "Figtree";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    text-indent: 10px;
+    padding-top: 3px;
+}
+
+.input-field-wrapper {
+    display: flex;
+}
+
+.input-field-advantage {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23469F00'/%3E%3Crect x='7.33331' y='4' width='1.06667' height='8' fill='white'/%3E%3Crect x='4' y='8.40009' width='1.06667' height='8' transform='rotate(-90 4 8.40009)' fill='white'/%3E%3C/svg%3E");
+    /* Add the path to your search icon image */
+    background-position: 10px center;
+    /* Adjust the position as needed */
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    /* Adjust the padding as needed */
+    /* Add your desired border style */
+}
+.input-field-advantage:focus {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23469F00'/%3E%3Crect x='7.33331' y='4' width='1.06667' height='8' fill='white'/%3E%3Crect x='4' y='8.40009' width='1.06667' height='8' transform='rotate(-90 4 8.40009)' fill='white'/%3E%3C/svg%3E");
+    background-position: 10px center;
+    /* Adjust the position as needed */
+    background-repeat: no-repeat;
+    padding-left: 40px;
+}
+.input-field-disadvantage {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='8' fill='%239F0000' /%3E%3Crect x='4' y='8.40033' width='1.06667' height='8' transform='rotate(-90 4 8.40033)' fill='white' /%3E%3C/svg%3E");
+    /* Add the path to your search icon image */
+    background-position: 10px center;
+    /* Adjust the position as needed */
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    /* Adjust the padding as needed */
+    /* Add your desired border style */
+}
+.input-field-disadvantage:focus {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='8' fill='%239F0000' /%3E%3Crect x='4' y='8.40033' width='1.06667' height='8' transform='rotate(-90 4 8.40033)' fill='white' /%3E%3C/svg%3E");
+    background-position: 10px center;
+    /* Adjust the position as needed */
+    background-repeat: no-repeat;
+    padding-left: 40px;
+}
+@media screen and (min-width: 470px) and (max-width: 769px) {
+    .carousel-inner-lg {
+        width: 383px !important;
+        left: 128px;
+    }
+}
+@media screen and (min-width: 770px) and (max-width: 1025px) {
+    .carousel-inner-lg {
+        width: 279px !important;
+        left: 73px;
+    }
+}
+@media screen and (min-width: 1026px) and (max-width: 1800px) {
+    .carousel-inner-lg {
+        width: 400px !important;
+        left: 103px;
+    }
+}
+@media (max-width: 470px) {
+    .carousel-inner-sm-indicator-right {
+        right: 0px;
+    }
+    .carousel-inner-sm-indicator-left {
+        left: 0px;
+    }
+}
+@media (max-width: 320px) {
+    .carousel-inner-sm-320 {
+        width: 202px;
+        left: 30px;
+    }
+}
+@media screen and (min-width: 321px) and (max-width: 375px) {
+    .carousel-inner-sm-375 {
+        width: 232px !important;
+        left: 43px;
+    }
+}
+@media screen and (min-width: 376px) and (max-width: 470px) {
+    .carousel-inner-sm-470 {
+        width: 249px !important;
+        left: 57px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .quantity-cart-footer-div {
+        margin-top: 82px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1025px) {
+    .quantity-cart-footer-div {
+        margin-top: 93px;
+    }
+}
+@media screen and (min-width: 1026px) and (max-width: 1441px) {
+    .quantity-cart-footer-div {
+        margin-top: 93px;
+    }
+}
+.rating {
+    display: inline-block;
+    position: relative;
+    height: 10px;
+    line-height: 10px;
+    font-size: 15px;
+}
+
+    .rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.rating label:last-child {
+position: static;
+}
+
+.rating label:nth-child(1) {
+z-index: 5;
+}
+
+.rating label:nth-child(2) {
+z-index: 4;
+}
+
+.rating label:nth-child(3) {
+z-index: 3;
+}
+
+.rating label:nth-child(4) {
+z-index: 2;
+}
+
+.rating label:nth-child(5) {
+z-index: 1;
+}
+
+.rating label input {
+position: absolute;
+top: 0;
+left: 0;
+opacity: 0;
+}
+
+.rating label .icon {
+float: left;
+color: transparent;
+}
+
+.rating label:last-child .icon {
+color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+color: #FFDF00;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+color: #000;
+text-shadow: 0 0 5px #FFDF00;
+}
+.product-review-rating
+{
+    display: flex;
+    gap: 4px;
+    margin-left: 10px;
+    margin-top: 4px;
+}
+.product-review-rating-font
+{
+    color: #000;
+    font-family: "Figtree";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+.product-review-rating-margin
+{
+    margin-left: 0px !important;
+}
+.load-more-btn
+{
+    background-color: #da5858;
+    padding: 15px 30px;
+    font-family: "Figtree";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    outline: none;
+    border-color: transparent;
+    cursor: pointer;
+}
+.load-more-btn:hover
+{
+    background-color: #E3E3E3;
+    border-color: #E0E0E0;
+    color: #A4A4A4;
+    transition: 0.5s ease;
+}
+#loadMoreBtn.btn-primary:focus {
+    background-color: #da5858;
+    border-color: transparent;
+    color: #FFF;
+    box-shadow: 0 0 5px rgba(227, 227, 227, 0.8);
+}
+#loadMoreBtn.btn-primary:focus:hover {
+    background-color: #E3E3E3;
+    border-color: #E0E0E0;
+    color: #A4A4A4;
+    transition: 0.5s ease;
+}
+.load-more-btn:focus-visible {
+    color: #A4A4A4;
+    background-color: #E3E3E3;
+    border-color: transparent;
+    outline: 0;
+    box-shadow: 0 0 5px rgba(227, 227, 227, 0.8);
+}
+.no-reviews-heading
+{
+    color: #323232;
+    text-align: center;
+    font-family: "Figtree";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 103%; /* 28.84px */
+    letter-spacing: 0.183px;
+}
+.clr {
+    color: #da5858;
+}

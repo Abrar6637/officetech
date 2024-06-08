@@ -1,0 +1,6 @@
+<!-- sample rectangle -->
+ <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
+            <path
+                d="M17 6.96004H9.45372V12.71H8.24631V6.96004H0.700012V6.04004H8.24631V0.290039H9.45372V6.04004H17V6.96004Z"
+                fill="#da5858" />
+        </svg>

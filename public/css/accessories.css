@@ -1,0 +1,436 @@
+.arrow::after {
+    content: url("../images/arrow.svg");
+    padding-left: 10px;
+}
+
+.arrow-white::after {
+    content: url("../images/arrow-white.png");
+    padding-left: 10px;
+}
+
+.arrow-black::after {
+    content: url("../images/arrow-black.png");
+    padding-left: 10px;
+}
+
+.tick::before {
+    content: url("../images/tick.svg");
+    padding-right: 2px;
+}
+
+.white-width {
+    width: 220px;
+    height: 267px;
+}
+
+@media (max-width: 480px) {
+    .cr-head {
+        margin: 0px !important;
+        padding: 25px 0px 25px 0px;
+    }
+
+    .pro-cat {
+        width: 99.7%;
+    }
+
+    .white-width {
+        width: 360px !important;
+    }
+
+    .ava {
+        margin-bottom: 0px !important;
+    }
+
+    .ava-border {
+        border-right: none !important;
+        border-bottom: 2px solid rgb(128, 128, 128, 0.5);
+        padding-bottom: 30px;
+    }
+}
+
+@media (min-width: 1023px) {
+    .ava {
+        margin-bottom: 166px !important;
+    }
+
+    .pro-cat {
+        width: 49.7%;
+        padding-left: 0px;
+    }
+
+    .ava-border {
+        border-right: 2px solid rgb(128, 128, 128, 0.5);
+    }
+}
+
+@media (min-width: 481px) {
+    .crousal-head {
+        margin: 85px !important;
+    }
+}
+
+/* Style the range slider */
+.range_container {
+    display: flex;
+    flex-direction: column;
+    width: 207px;
+    margin: 30px 0px;
+}
+
+.sliders_control {
+    position: relative;
+    min-height: 50px;
+}
+
+.form_control {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    color: #635a5a;
+    gap: 13px;
+}
+
+/* Other existing styles for the draggable points */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #c6c6c6;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='19' height='19' viewBox='0 0 19 19' fill='none'%3E%3Ccircle cx='9.5' cy='9.5' r='9' fill='white' stroke='%23DADADA' /%3E%3Ccircle cx='9.50013' cy='9.8' r='3.8' fill='%23da5858' /%3E%3C/svg%3E") !important;
+}
+
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #c6c6c6;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #f7f7f7;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+    -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+}
+
+input[type="number"] {
+    color: #7e7e7e;
+    font-family: "Figtree";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    width: 50px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    text-align: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    background-color: #c6c6c6;
+    pointer-events: none;
+}
+
+#fromSlider {
+    height: 0;
+    z-index: 1;
+}
+
+.checkbox {
+    width: 17px;
+    height: 17px;
+    border: 1px solid #dadada;
+    background: #fff;
+    margin-top: 14px;
+}
+
+.checkbox-label {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.filter-sidebar-heading {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 103%;
+    letter-spacing: 0.183px;
+}
+
+.filter-sidebar-div {
+    margin-top: 50px;
+}
+
+.filter-sidebar-option {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.active {
+    color: #da5858;
+}
+
+.filter-sidebar-range-input {
+    border-radius: 5px;
+    border: 1px solid #dadada;
+    margin: 0;
+    text-align: center;
+    padding: 7px 20px;
+}
+
+.filter-sidebar-range-input-center-text {
+    color: #7e7e7e;
+    font-family: "Figtree";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-sidebar-checkbox-label {
+    color: #bfbfbf;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.filter-sidebar-btn {
+    width: 100%;
+    border-radius: 17px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 9px 30px;
+    letter-spacing: 0.183px;
+    background: #da5858;
+    color: #fff;
+    font-family: "Figtree";
+    border: none;
+    font-style: normal;
+}
+
+.filter-sidebar-btn:hover {
+    background-color: #323232;
+    width: 100%;
+    border-radius: 17px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 9px 30px;
+    letter-spacing: 0.183px;
+    color: #fff;
+    font-family: "Figtree";
+    border: none;
+    font-style: normal;
+    transition: 0.3s ease-in-out;
+}
+
+.filter-sidebar-reset {
+    color: #999;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    text-decoration-line: underline;
+    margin-top: 10px;
+}
+
+/* Breadcrumb container */
+.breadcrumb-container {
+    background-color: #fff;
+    padding: 20px;
+}
+
+/* Breadcrumb list */
+.breadcrumb {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Breadcrumb items */
+.breadcrumb li {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #cdcdcd;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+/* Breadcrumb links */
+.breadcrumb li a {
+    text-decoration: none;
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.slash {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Style the current page item (without a link) */
+.breadcrumb li:last-child {
+    color: #777;
+}
+
+/* Media query for responsive design */
+@media screen and (max-width: 768px) {
+    .breadcrumb li {
+        font-size: 12px;
+    }
+}
+
+.sort-by {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+    margin-top: 7px;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: grey;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #dadada;
+    color: #7e7e7e;
+    font-family: "Figtree";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: transparent;
+}
+
+.angle-down {
+    font-size: 15px;
+}
+
+.main {
+    background-color: #f3f6f8;
+}
+
+.sale-badge {
+    background-color: #e60188 !important;
+    padding: 7px 13px;
+    border-radius: 4px;
+    left: 18px;
+    color: #fff;
+    top: 16px;
+}
+
+/* this page css starts from this place  */
+.page-heading {
+    color: #323232;
+    font-family: "Figtree";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 103%;
+    /* 28.84px */
+    letter-spacing: 0.183px;
+}
+
+.page-result-p {
+    color: #999;
+    font-family: "Figtree";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.183px;
+}
+
+.page-result-div {
+    margin-top: 44px;
+}
+summary {
+    list-style: none !important;
+}

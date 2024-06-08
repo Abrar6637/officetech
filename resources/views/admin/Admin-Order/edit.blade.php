@@ -1,0 +1,648 @@
+@extends('layouts.master')
+@section('title')
+    @lang('Edit Order')
+@endsection
+@section('css')
+    <link href="{{ URL::asset('/assets/libs/admin-resources/admin-resources.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <style>
+        .current {
+            background: #f4f5f8 !important;
+            border: none !important;
+        }
+
+        .no-spinners {
+            -moz-appearance: textfield;
+        }
+
+        .no-spinners::-webkit-outer-spin-button,
+        .no-spinners::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        article {
+            background: #ccc;
+            height: 200px;
+            display: none;
+        }
+
+        article.on {
+            display: block;
+        }
+    </style>
+@endsection
+@section('content')
+    @component('components.breadcrumb')
+        @slot('li_1')
+            Dashboard
+        @endslot
+        @slot('title')
+            Edit Order !
+        @endslot
+    @endcomponent
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="container mt-3">
+                </div>
+                <div class="card-header d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Edit Order</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('update.admin.order',$order_details->id) }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="mb-4">User Details</h4>
+                                <input type="hidden" name="order_Status" value="{{$order_details->order_status}}">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">First Name</label>
+                                            <input type="text" name="first_name" id="first_name" value="{{$order_details->customer->first_name}}" class="form-control" placeholder="First Name">
+                                        </div>
+                                        @error('first_name')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Last Name</label>
+                                            <input type="text" name="last_name" id="last_name"
+                                                value="{{$order_details->customer->last_name}}" class="form-control" placeholder="Last Name">
+                                        </div>
+                                        @error('last_name')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Company Name</label>
+                                            <input type="text" name="company_name" value="{{$order_details->customer->company_name}}"
+                                                id="company_name" class="form-control" placeholder="Company Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Address</label>
+                                            <input type="text" name="address" id="address" class="form-control"
+                                                value="{{$order_details->customer->address}}" placeholder="Address">
+                                        </div>
+                                        @error('address')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="country" class="form-label">Country</label>
+                                            <select name="country" id="country" class="form-select">
+                                                @if ($countries->count() > 0)
+                                                    @foreach ($countries as $country)     
+                                                        <option value="{{ $country->name }}" {{ $order_details->customer->country == $country->name ? 'selected' : '' }}>{{ $country->name }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Region</label>
+                                            <select class="form-select bg-input" name="region_state" id="region_states" aria-label="Default select example">
+                                                <option value="" disabled>Select Region</option>
+                                                @foreach ($regions as $region)
+                                                    <option value="{{$region->name}}" {{ ($region->name == $order_details->customer->region_state ? 'selected' : '' )}}>{{$region->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Vat Reg No</label>
+                                            <input type="text" name="vat_reg_no" id="vat_reg_no" class="form-control"
+                                                placeholder="Vat Reg No" value="{{$order_details->customer->vat_reg_no}}">
+                                        </div>
+                                        @error('vat_reg_no')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Company Reg No</label>
+                                            <input type="text" name="company_reg_no" id="company_reg_no"
+                                                class="form-control" placeholder="Company Reg No"
+                                                value="{{$order_details->customer->company_reg_no}}">
+                                        </div>
+                                        @error('company_reg_no')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Account Manager</label>
+                                                <select class="form-select bg-input" name="account_manager" id="region_states" aria-label="Default select example">
+                                            <option value="" disabled>Select Account Manager</option>
+                                                @foreach ($AccountManagers as $AccountManager)
+                                                    <option value="{{$AccountManager->name}}" {{ ($AccountManager->name == $order_details->customer->account_manager ? 'selected' : '' )}}>{{$AccountManager->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Email</label>
+                                            <input type="text" name="email" id="email" class="form-control"
+                                                placeholder="Email" value="{{$order_details->customer->email}}">
+                                            <code class="text-muted">Enter The Email From Which User Is Registered</code>
+                                        </div>
+                                        @error('email')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Phone</label>
+                                            <input type="text" name="phone" id="phone" class="form-control"
+                                                placeholder="Phone Number" value="{{$order_details->customer->phone_number}}">
+                                        </div>
+                                        @error('phone')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="col-5">
+                                <div class="d-flex justify-content-between">
+                                    <h4 class="mb-4">Select Products</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <select class="form-select" name="product_id[]">
+                                            <option value="Select">Select</option>
+                                            @foreach ($products as $product)
+                                                <option value="{{ $product->id }}"
+                                                    data-id = "{{$product->id}}"
+                                                    data-price="{{ $product->sale_price ? $product->sale_price : $product->price }}"
+                                                    data-sale="{{ $product->sale_price }}"
+                                                    data-name="{{ $product->name }}"
+                                                    data-quantity = "{{ $product->quantity }}"
+                                                    @if (count($product->gallery_images) > 0)
+                                                        data-image="{{$product->gallery_images[0]->images}}"
+                                                    @endif
+                                                >{{$product->name}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <button type="button" class="btn btn-primary btn-bg-color border-0" id="add">Add Product</button>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h4 class="mb-4">Products</h4>
+                                            <input type="text" class="form-control w-50 mb-4"
+                                                value="@if (isset($order_details->discount_code_coppen)) {{$order_details->discount_code_coppen }} @endif" id="discount_coupon"
+                                                placeholder="Enter coupon code here">
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <th scope="col">Product Name</th>
+                                                    <th scope="col">Clustor/Serial no</th>
+                                                    <th scope="col">Product Image</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Unit Price</th>
+                                                    <th scope="col">Sale Price</th>
+                                                    <th scope="col">Subtotal</th>
+                                                    <th scope="col">Action</th>
+                                                </thead>
+                                                <tbody class="table-body">
+                                                    @foreach ($orderProducts as $orderProduct)
+                                                        <tr class="append-tr-{{$orderProduct->product_details->name}}" id="{{$orderProduct->product_details->id}}">
+                                                             <td>{{ $orderProduct->product_details->name }}</td>
+                                                             <td>
+                                                                <input type="number" name="serial_no[]" class="form-control no-spinners" placeholder="Clustor/Serial No"
+                                                                    @if(isset($orderProduct->serial_no))
+                                                                        value="{{ $orderProduct->serial_no }}"
+                                                                    @endif
+                                                                    id="new-serial_no"
+                                                                >
+                                                            </td>
+                                                             <td>
+                                                                @foreach ($orderProduct->product_details->gallery_images as $productImage)
+                                                                    <img src="{{url('images/product_images/'. $productImage->images)}}" alt="" style="height:100px;width:120px;">
+                                                                    @break
+                                                                @endforeach
+                                                            </td>   
+                                                            <td>
+                                                                <input type="number" name="quantity[]"
+                                                                class="form-control no-spinners product-quantity" placeholder="Quantity"
+                                                                value="{{ $orderProduct->quantity }}" id="productQuantity" min="1">    
+                                                            </td>   
+                                                            <td data-price="{{ $orderProduct->product_details->sale_price ? $orderProduct->product_details->sale_price : $orderProduct->product_details->price }}">
+                                                                {{ $orderProduct->product_details->price }}
+                                                            </td>
+                                                            <td>
+                                                            @if (isset($orderProduct->product_details->sale_price))  
+                                                            {{$orderProduct->product_details->sale_price}}
+                                                            @else
+                                                            <p class="text-center">0</p>
+                                                            @endif
+                                                            </td>
+                                                            <td class="product-subtotal" id="subtotal">
+                                                                @if (isset($orderProduct->product_details->sale_price))     
+                                                                {{$orderProduct->product_details->sale_price * $orderProduct->quantity}}
+                                                                @else
+                                                                {{$orderProduct->product_details->price * $orderProduct->quantity}}
+                                                                @endif
+                                                            </td>  
+                                                            <td class="remove-product" data-id="{{$orderProduct->product_id}}" data-remove="append-tr-{{ $orderProduct->product_details->name }}" data-name="{{ $orderProduct->product_details->name }}">
+                                                                <i class="mdi mdi-delete font-size-18 text-danger"></i>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                        <div class="hidden-fields">
+                                                        <input type="hidden" name="total_price" id='total-price-input' value="{{$order_details->grand_total}}">
+                                                        <input type="hidden" name="product_ids" id="multipleProducts" value="{{$orderProduct->product_id}}">
+                                                        <input type="hidden" name="old_price" id="old_price" value="{{$order_details->grand_total}}">
+                                                        <input type="hidden" name="old_discount" id="old_discount" value="{{$order_details->discount_amount}}">
+                                                        <input type="hidden" name="discount_amount" id="discount_amount" value="{{$order_details->discount_amount}}">
+                                                        <input type="hidden" name="shipping_amount" id="shipping_amount" value="{{$order_details->shipping_amount}}">
+                                                        <input type="hidden" name="new_subtotal" id="new_subtotal" value="{{$order_details->total_amount}}">
+                                                        <input type="hidden" name="new_total_amount" id="new_total_amount" value="">
+                                                        <input type="hidden" name="vat_amount" id="vat_amount" value="">
+                                                        <input type="hidden" name="coupon_name" id="coupon_name" value="">
+                                                    </div>
+                                                        <script>
+                                                            document.getElementById('multipleProducts').value = '{{ $productIdsString }}';
+                                                        </script>
+                                                </tbody>
+                                            </table>
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <p class="fw-bold mt-3 mb-3 mx-2">Discount</p>
+                                                    <p class="fw-bold mt-3 mb-3 mx-2">Shipping</p>
+                                                    <p class="fw-bold mt-3 mb-3 mx-2">Total</p>
+                                                </div>
+                                                <div>
+                                                    <div class="mt-3 mb-3 mx-2 text-end"><span id="discount"></span></div>
+                                                    <div class="mt-3 mb-3 mx-2 text-end"><span id="shipping"></span></div>
+                                                    <div class="mt-3 mb-3 mx-2 text-end"><span id="total-price"></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-3 mx-auto">
+                                    <button type="submit" class="btn btn-bg-color text-white w-100">Update Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('script')
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- <script>
+        $(document).ready(function() {
+            var timeoutId;
+            $('#discount_coupon').on('change', function() {
+                var productRows = $('.table-body').find('tr');
+                console.log(productRows.length);
+                if(productRows.length > 0)
+                {
+                    var discount_coupon = $(this).val();
+                    var total = $('#total-price').text();
+                    var totalAmount = parseFloat(total.replace(/\D/g, ''));
+                    $.ajax({
+                        type: 'POST',
+                        url: "/cart/discount",
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            totalAmount: totalAmount,
+                            discount_coupon: discount_coupon
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            var old_discount = $('#old_discount').val();
+                            var oldPrice = $('#old_price').val();
+                            var newtotal = $('#total-price').text();
+                            total = response.total;
+                            discount_amount = response.discount;
+                            $('#discount-show').show();
+                            if (response.discount) {
+                                $('#discount').text('- ' + discount_amount);
+                                $('#discount_amount').val(discount_amount);
+                                $('#total-price').text(total);
+                                $('#total-price-input').val(total);
+                            } 
+                            else if (discount_coupon == '') {
+                                $('#discount-show').hide();
+                                if (old_discount > 0) {
+                                    $('#discount').text(old_discount);
+                                }
+                                else
+                                {
+                                    $('#discount').text(0);
+                                }
+                                $('#discount_amount').val(old_discount);
+                                $('#total-price').text(oldPrice-old_discount);    
+
+                            } else {
+                                $('#discount').text(response.message);
+                                $('#discount_amount').val(old_discount);
+                                $('#total-price').text(oldPrice-old_discount);   
+                                $('#total-price-input').val(oldPrice-old_discount);   
+
+                            }
+                        },
+                        error: function(response) {
+                            console.log(response);
+                        },
+                    });
+                }
+            });
+
+        });
+    </script> -->
+    <script>
+        $(document).ready(function () {
+            $('#add').click(function (e) { 
+                e.preventDefault();
+                $('select[name="product_id[]"]').each(function(index, element) {
+                    var selectedOption = $(element).find(':selected');
+                    if(selectedOption.val()!=='Select')
+                    {
+                        $(selectedOption).hide();
+                        var productId = selectedOption.data('id');
+                        var productIdToRemove = selectedOption.data('id');
+                        var productIds=$('#multipleProducts').val();
+                        $('#multipleProducts').val(productId);
+                        if(productIds!=""){
+                        productId = productId+','+productIds;
+                        }
+                        $('#multipleProducts').val(productId);
+                        var name = selectedOption.data('name');
+                        var image = selectedOption.data('image');
+                        var quantity = 1;
+                        var unitPrice = selectedOption.data('price');
+                        var saleprice = selectedOption.data('sale');
+                        var productTotal = quantity * unitPrice;
+                        var serialNo = $('#new-serial_no').val();
+                        var tableProductRow = `
+                        <tr class="append-tr-${name}" id="${productIdToRemove}">
+                            <td>${name}</td>
+                            <td><input type="number" name="serial_no[]"
+                                class="form-control no-spinners " placeholder="Clustor/Serial No"
+                                value="" id="new-serial_no"></td>
+                            <td><img src="/images/product_images/${image}" alt="image" style="height:100px;width:100px;"></td>
+                            <td>
+                                <input type="number" name="quantity[]"
+                                class="form-control no-spinners product-quantity" placeholder="Quantity"
+                                 value="${quantity}" min="1" id="new-product-quantity">
+                            </td>
+                            <td data-price="${unitPrice}">${unitPrice}</td>
+                            <td data-sale="${saleprice}">${saleprice}</td>
+                            <td class="product-subtotal">${productTotal}</td>
+                            <td class="remove-product" data-id="${productId}" data-remove="append-tr-${name}" data-name="${name}">
+                                <i class="mdi mdi-delete font-size-18 text-danger"></i>
+                            </td>
+                        </tr>
+                        `;  
+                        $('.table-body').append(tableProductRow);
+                        $(element).val('Select');
+                        
+                    }
+                });
+                updateTotal();
+                updateShipping();
+                handleDiscountCoupon();
+                updateNewSubtotal(); 
+            });
+            function updateNewSubtotal() {
+                var newSubtotal = 0;
+                $('.product-subtotal').each(function() { 
+                    newSubtotal += parseFloat($(this).text());
+                });
+                $('#new_subtotal').val(newSubtotal);
+            }
+            $('.table-body').on('keyup', '.product-quantity', function () {
+                updateSubtotal($(this));
+                updateNewSubtotal();
+                updateTotal();
+                updateShipping(); 
+                
+            });
+            function updateSubtotal(inputElement) {
+                var quantity = parseInt(inputElement.val());
+                var unitPrice = parseFloat(inputElement.closest('tr').find('[data-price]').data('price'));
+                var productTotal = quantity * unitPrice;
+                inputElement.closest('tr').find('.product-subtotal').text(productTotal.toFixed(2));
+            }
+            function updateTotal() {
+                var total = 0;
+                $('.product-subtotal').each(function() { 
+                    total += parseFloat($(this).text());
+                });
+                $('#old_price').val(total);
+                let discount = $('#discount').text();
+                if(isNumeric(discount)){
+                $('#total-price').text(total-discount);
+                $('#total-price-input').val(total-discount);
+                }else{
+                    var old_discount = $('#old_discount').val();
+                    $('#total-price').text(total-old_discount);
+                    $('#total-price-input').val(total-old_discount);
+                }
+                function isNumeric(discount) {
+                    var discount= Number(discount);
+                    return typeof discount === 'number' && !isNaN(discount);
+                }
+            }
+            $('.table-body').on('click', '.remove-product', function (e) {
+                console.log('called');
+                e.preventDefault();
+                var productName = $(this).data('remove');
+
+                var productOrignalName = $(this).data('name');
+
+
+                var productIdToRemove = $(this).data('id');
+
+                var productIdsValue = document.getElementById('multipleProducts').value;
+
+                let idToRemove = productIdToRemove;
+
+                
+                let valueArray = productIdsValue.split(',');
+                
+                
+                valueArray = valueArray.filter(value => value != idToRemove);
+                
+
+                let updatedValueString = valueArray.join(',');
+                $('#multipleProducts').val(updatedValueString);
+                $(`#${productIdToRemove}`).remove();
+
+                
+                var show = $('select[name="product_id[]"] option[data-name="' + productOrignalName + '"]');
+                
+                show.css('display','block');
+                
+                updateTotal();
+                updateNewSubtotal();
+                updateShipping(); 
+            });
+            $(document).on('keydown', '#new-product-quantity', function(e) {
+                var inputValue = $(this).val();
+
+                if (e.which === 8 && inputValue.length === 1) {
+                    e.preventDefault();
+                }
+            });
+            $(document).on('keydown', '#productQuantity', function(e) {
+                var inputValue = $(this).val();
+
+                if (e.which === 8 && inputValue.length === 1) {
+                    e.preventDefault();
+                }
+            });
+            
+        // --------------Shipping And Discount Coupon Calculation
+            var timeoutId;
+            function handleDiscountCoupon() {
+                clearTimeout(timeoutId);
+                var discount_coupon = $('#discount_coupon').val();
+                console.log("-----Discount Coupon----------",discount_coupon)
+                var total = $('#subtotal').text();
+                var totalAmount = parseFloat(total.replace(/\D/g, ''));
+                
+                timeoutId = setTimeout(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: "/cart/discount",
+                        data: {
+                            totalAmount: totalAmount,
+                            discount_coupon: discount_coupon,
+                            _token: '{{ csrf_token() }}',
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            total = response.total;
+                            var newtotal = $('#subtotal').text();
+                            var newtotal = parseFloat(newtotal.replace(/\D/g, ''));
+                            discount_amount = response.discount;
+                            var selectedRegionState = $('#region_states').val();
+
+                            if (!(selectedRegionState == 'Makkah' || selectedRegionState == 'Dammam' || selectedRegionState == 'Kohbar' ||
+                                    selectedRegionState == 'Jeddah' || selectedRegionState == 'Riyadh')) {
+                                var shipping = newtotal * 0.05;
+                                // total = total + shipping;
+                                var newshipping = newtotal * 0.05;
+                                // newtotal = newtotal + newshipping;
+                            }
+
+                            $('#discount-show').show();
+                            if (response.discount) {
+                                $('#discount').text('- ' + discount_amount + ' SAR');
+                                $('#total').text(total + ' SAR');
+                                $('#new_total_amount').val(total);
+                                $('#discount_amount').val(discount_amount);
+                                $('#coupon_name').val(response.coupon_name);
+                            } else if (discount_coupon == '') {
+                                $('#discount-show').hide();
+                                $('#total').text(newtotal);
+                                $('#new_total_amount').val(newtotal);
+                                $('#discount_amount').val(0);
+                                $('#discount').text( 0 + ' SAR');
+                                $('#coupon_name').val('');
+                            } else {
+                                $('#discount').text(response.message);
+                                $('#total').text(newtotal + ' SAR');
+                                $('#new_total_amount').val(newtotal);
+                                $('#discount_amount').val(0);
+                                $('#coupon_name').val('');
+                            }
+                            updateShipping();
+                        },
+                        error: function(response) {
+                            console.log(response);
+                        },
+                    });
+                }, 1000);
+            }
+            function updateShipping() {
+                var subamount = parseFloat($('#new_subtotal').val().replace(/[^\d.]/g, ''));
+                var discountAmount = parseFloat($('#discount_amount').val());
+                var selectedRegionState = $('#region_states').val();
+                console.log("----Given Subtotal-----",subamount)
+                console.log("----Given DiscountAmount-----",discountAmount)
+                console.log("----Given RegionSelected-----",selectedRegionState)
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route("admin.update.shipping") }}',
+                    data: {
+                        selectedRegionState: selectedRegionState,
+                        subtotal: subamount,
+                        discountAmount: discountAmount,
+                        _token: '{{ csrf_token() }}',
+                    },
+                    success: function(response) {
+                        console.log("----------", response);
+                        var shippingAmount = response.shippingAmount;
+                        var grandTotal = response.grandTotal;
+                        var vatRate = 0.15;
+                        var vatAmount = grandTotal * vatRate;
+                        $('#vat_amount').val(vatAmount);
+                        var totalWithVat = grandTotal + vatAmount;
+                        console.log("totalWithVat",totalWithVat.toFixed(2));
+                        console.log(grandTotal);
+                        if (shippingAmount > 0) {
+                            $('#shipping_amount').val(shippingAmount);
+                            $('#shipping').text(shippingAmount + ' SAR');
+                        } else {
+                            $('#shipping_amount').val(0);
+                            $('#shipping').text("Enjoy Free Shipping on Your Order!");
+                        }
+                        $('#total-price').text(totalWithVat.toFixed(2) + ' SAR');
+                        $('#new_total_amount').val(totalWithVat.toFixed(2));
+                        var new_total_amount = parseFloat($('#new_total_amount').val());
+                        console.log(new_total_amount);
+                    },
+                    error: function(error) {
+                        console.log("Ajax request failed:", error);
+                    }
+                });
+            }
+            $('#discount_coupon').on('keyup', function() {
+                handleDiscountCoupon();
+            });
+            updateShipping();
+            handleDiscountCoupon();
+            $('#region_states').on('change', function() {
+                updateShipping();
+            });
+        });
+    </script>
+    <!-- apexcharts -->
+    <script src="{{ URL::asset('/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ URL::asset('/assets/libs/admin-resources/admin-resources.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <!-- dashboard init -->
+    <script src="{{ URL::asset('/assets/js/pages/dashboard.init.js') }}"></script>
+    <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+@endsection
