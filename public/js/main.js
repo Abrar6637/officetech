@@ -38,8 +38,9 @@ function slickCarousel() {
         slidesToScroll: 1,
         centerPadding: "0px",
         wariableWidth: true,
-        
         appendDots: $(".promo__dots"),
+        		autoplay: true,
+		autoplaySpeed: 5000,
     });
     $(".reviews__slider").slick({
         dots: true,
